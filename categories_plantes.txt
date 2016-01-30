@@ -1,0 +1,25 @@
+﻿G;Alliance des Cattleya
+C;15;Epidendrum - espèces
+C;16;Encyclia - espèces
+C;23;Cattleya - espèces
+G;Alliance des Cypripedium
+C;33;Paphiopedilum espèces, sous-genre Barchypetalum (incluant Parvisepalum)
+C;34;Paphiopedilum espèces, multifloraux, section Coryopedilum et Pardapetalum
+C;34a;Paphiopedilum espèces, groupe insigne
+C;37a;Paphiopedilum hybrides
+C;44;Phragmipedium - espèces
+G;Alliance des Vanda
+C;45;Aerangis
+C;47;Angraecum
+C;49;Ascocentrum - espèces et hybrides intergénériques
+C;50;Ascocenda - jaunes/orange
+C;56;Vanda espèces
+C;58;Vanda hybrides
+G;Phalaenopsis et Doritis
+C;61;Phalaenopsis espèces
+C;64a;Phalaenopsis hybrides blancs sans marques
+C;64e;Phalaenopsis hybrides roses sans marques
+G;Alliance des Oncidium
+C;78;Brassia - espèces et hybrides
+C;79;Miltonia et Miltoniopsis - espèces
+C;80;Miltonia et Miltoniopsis - hybrides
