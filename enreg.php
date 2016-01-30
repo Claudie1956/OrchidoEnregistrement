@@ -3,7 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Enregistrement des plantes</title>
-<link href="styleLSP.css" rel="stylesheet" type="text/css" />
 </head>		
 <body>
 
