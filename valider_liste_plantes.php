@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,48 +11,9 @@
 		
 <h2>Validation de la liste des plantes</h2>
 
-<?php
-# Fonction pour envoyer courriel, utilisée à la fin
-function envoyer_liste()
-{
-	$destinataire = "lafittemarchi.claudie@gmail.com";
-	$objet = "Enregistrement des plantes de " . $_SESSION['nom'];
-	$message = "Plantes de " . $_SESSION['nom'] . "\n";
-	$message = $message . $_SESSION['email'] . "\n";
-    if (empty($_SESSION['membre']))
-    { $message = $message . $_SESSION['societe'] . "\n"; }
-    else
-    { $message = $message . "Membre# " . $_SESSION['membre'] . "\n\n"; }
-	
-	for ($i = 0; $i <= $nbplantes-1 ; $i++) 
-	{ $message = $message . $_SESSION['catp'][$i] . "  " . $_SESSION['nomp'][$i] . $_SESSION['pas_aos'][$i] ."\n"; }
-	echo "<p></p>";
-	print "Contenu du message envoyé\r\n";
-	print "$message";
-	# Structure courriel
-	$message_envoye = "Votre message a été envoyé !";
-    $message_non_envoye = "L'envoi du mail a échoué, veuillez réessayer SVP.";
-	$headers  = 'MIME-Version: 1.0' . "\r\n";
-	$headers .= 'From:'.$_SESSION['nom'].' <'.$_SESSION['email'].'>' . "\r\n" .
-				'Reply-To:'.$_SESSION['email']. "\r\n" .
-				'Content-Type: text/plain; charset="utf-8"; DelSp="Yes"; format=flowed '."\r\n" .
-				'Content-Disposition: inline'. "\r\n" .
-				'Content-Transfer-Encoding: 7bit'." \r\n" .
-				'X-Mailer:PHP/'.phpversion();
-    if (mail($destinataire, $objet, $message, $headers))
-	{
-	  echo '<p>'.$message_envoye.'</p>'."\n";
-	}
-	else
-	{
-	  echo '<p>'.$message_non_envoye.'</p>'."\n";
-	};
-}
-?>
+
 
 <?php
-
-session_start();
 
 # Début de la validation des champs envoyés par le formulaire
 $erreur = False;
@@ -189,17 +152,15 @@ echo "</table>\n";
 
 <?php
 # Si erreur, bouton pour retourner au formulaire
+$tabnum=1;
 if (! $erreur)
-{
-	# bouton pour envoyer le mail	
+{ 
 	echo "<p></p>";
-#   echo "<form>";
-#   echo "<input type=submit value='Envoyer la liste' onclick=envoyer_liste()>";
-#   echo "</form>";
-	echo "<form name='boutons'>";
-    echo "<center><input type=button name='Envoyer' value='Envoyer la liste' onClick='envoyer_liste()' /></center>";
+    echo "<form id='bouton_valider' method='post' action='liste_plantes_confirmee.php'>";
+	echo "<center><input type=submit name=envoyer value='Envoyer la liste' tabindex=$tabnum /></center>";
     echo "</form>\n";
-    echo "<div align=center>ou</div>";
+    echo "<center>ou</center>";
+	$tabnum++;
 }
 echo "<center><button onclick='history.go(-1);'>Revenir au formulaire</button></center>\n";
 
