@@ -57,50 +57,64 @@ $erreur = False;
 $message_formulaire_invalide = "Erreur dans le formulaire";
 
 # Valider le nom
-$nom = htmlspecialchars($_POST['nom']);
-if (empty($nom))
-{ echo("<font color=red><b>*** Entrez votre nom! ***</b></font><br>"); 
-  $erreur = True;
+if (!isset($_POST['nom']) || empty($_POST['nom'])) 
+{
+	echo("<font color=red><b>*** Entrez votre nom! ***</b></font><br>"); 
+	$erreur = true;
 }
-else 
-{ echo "<b>$nom</b><br>"; 
+else
+{ $nom = htmlspecialchars($_POST['nom']);
+  echo "<b>$nom</b><br>"; 
   $_SESSION['nom'] = $nom;
 }
 
 # Valider le courriel
-$email = htmlspecialchars($_POST['email']);
 
-if (filter_var($email, FILTER_VALIDATE_EMAIL) == FALSE)
-    { echo "<font color=red><b>*** Votre adresse courriel est invalide ***</b> ***</b></font><br>";
-	  $erreur = True; }
+if (!isset($_POST['email']) || filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) == FALSE)
+   { echo "<font color=red><b>*** Votre adresse courriel est invalide ***</b> ***</b></font><br>";
+	 $erreur = true; 
+   }
 else 
-{ echo "<b>$email</b><br>"; 
+{ $email = htmlspecialchars($_POST['email']);
+  echo "<b>$email</b><br>"; 
   $_SESSION['email'] = $nom;
 }
 
 # Valider: #membre ou Société, mais pas les deux. Mais un des deux
 $membre = htmlspecialchars($_POST['membre']);
 $societe = htmlspecialchars($_POST['societe']);
-if (empty($membre) and empty($societe))
-{echo ("<font color=red><b>*** Entrez le numéro de membre ou le nom de la société orchidophile ***</b></font><br>"); 
- $erreur = True;
-}
-elseif (empty($membre) == FALSE and empty($societe) == FALSE)
-{echo ("<font color=red><b>*** Entrez le numéro de membre ou le nom de la société orchidophile, mais pas les deux! ***</b></font><br>"); 
- $erreur = True;
+if (isset($_POST['membre']) && !empty($_POST['membre'])) 
+{
+	$membre = htmlspecialchars($_POST['membre']);
 }
 else
-{ if (empty($membre))
-   { echo "<b>$societe</b><br>"; 
-     $_SESSION['membre'] = null;
+{
+	$membre = "";
+}
+
+if (isset($_POST['societe']) && !empty($_POST['societe'])) 
+{
+	$societe = htmlspecialchars($_POST['societe']);
+}
+else
+{
+	$societe = "";
+}
+
+if (strlen($membre) == 0 && strlen($societe) == 0)
+{  echo ("<font color=red><b>*** Entrez le numéro de membre ou le nom de la société orchidophile ***</b></font><br>"); 
+   $erreur = true;
+}
+else if (strlen($membre) > 0 && strlen($societe) > 0)
+  {
+	echo ("<font color=red><b>*** Entrez le numéro de membre ou le nom de la société orchidophile, mais pas les deux! ***</b></font><br>"); 
+	$erreur = true;
+   }
+else
+   { $_SESSION['membre'] = $membre;
      $_SESSION['societe'] = $societe;
    }
-  else
-   { echo "<b>$membre</b><br>"; 
-     $_SESSION['membre'] = $membre;
-     $_SESSION['societe'] = null;;
-   }
-}
+
 ?> 
 
 <p></p>
@@ -115,7 +129,7 @@ $maxp = 10;
 if (isset($_POST['plantes'])) 
 {
     $nbplantes = 0;
-	foreach (htmlspecialchars($_POST['plantes']) as $plante) 
+	foreach ($_POST['plantes'] as $plante) 
 	{	if (strlen($plante['nomp']) > 0) 
 		{   $nomp[$nbplantes] = $plante['nomp'];
 			$catp[$nbplantes] = $plante['catp'];
@@ -169,20 +183,13 @@ for ($i = 0; $i <= $nbplantes-1; $i++)
      echo "<td align=center>$pas_aos[$i]<td>";
 	 echo "</td></tr>";
 }
-echo "</table>";
+echo "</table>\n";
 ?>
 
 
 <?php
 # Si erreur, bouton pour retourner au formulaire
-if ($erreur)
-{
-#  echo "<font color=red><b>*** $message_formulaire_invalide ***</b></font><br>";
-#  echo "<a href='javascript:history.go(-1)'>Retour au formulaire</a>";
-#   echo "<br>";
-  echo "<button onclick='history.go(-1);'>Revenir au formulaire</button> ";
-}
-else
+if (! $erreur)
 {
 	# bouton pour envoyer le mail	
 	echo "<p></p>";
@@ -190,12 +197,11 @@ else
 #   echo "<input type=submit value='Envoyer la liste' onclick=envoyer_liste()>";
 #   echo "</form>";
 	echo "<form name='boutons'>";
-    echo "<center><input type=button name='Envoyer' value='Envoyer la liste' onClick='envoyer_liste()' /><center>";
-    echo "</form>";
+    echo "<center><input type=button name='Envoyer' value='Envoyer la liste' onClick='envoyer_liste()' /></center>";
+    echo "</form>\n";
     echo "<div align=center>ou</div>";
-    echo "<center><button onclick='history.go('./enreg.php');'>Revenir au formulaire</button></center> ";
-
 }
+echo "<center><button onclick='history.go(-1);'>Revenir au formulaire</button></center>\n";
 
 session_write_close();	
 ?>
