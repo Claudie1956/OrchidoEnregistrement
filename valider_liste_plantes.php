@@ -6,7 +6,7 @@
 <link href="styleLSP.css" rel="stylesheet" type="text/css" />
 </head>		
 
-		
+<body>	
 		
 <h2>Validation de la liste des plantes</h2>
 
@@ -201,3 +201,5 @@ else
 session_write_close();	
 ?>
 		 
+</body>
+</html>

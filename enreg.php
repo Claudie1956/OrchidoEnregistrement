@@ -1,8 +1,12 @@
-<?php include("top.inc"); ?>
-	
-		
-		
-<div class="news">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Enregistrement des plantes</title>
+<link href="styleLSP.css" rel="stylesheet" type="text/css" />
+</head>		
+<body>
+
 <h2>Enregistrement des plantes</h2>
     <form id="enregistrement" method="post" action="valider_liste_plantes.php">
     	<fieldset><legend><b>Vos coordonnées</b></legend>
@@ -110,9 +114,6 @@ function afficher_liste_categories($ligne_liste)
          echo "<div align=center><input type=reset value='Réinitialiser le formulaire' tabindex=$tabnum /> </div>";
 		?>
     </form>
-</div>
-		
-		
-		
-		 
-<?php include("bottom.inc"); ?>
+
+</body>
+</html>
