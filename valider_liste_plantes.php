@@ -89,41 +89,50 @@ $catp = array();
 $pas_aos = array();
 $maxp = 10;
 
+$plantes = array();
+
 if (isset($_POST['plantes'])) 
 {
-    $nbplantes = 0;
 	foreach ($_POST['plantes'] as $plante) 
 	{	if (strlen($plante['nomp']) > 0) 
-		{   $nomp[$nbplantes] = $plante['nomp'];
+		{
+			$nouvelle_plante = array();
+			$nouvelle_plante['nomp'] = $plante['nomp'];
 			if (empty($plante['catp']) or ($plante['catp'] == "message_categorie"))
-			{ 	echo ("<font color=red><b>*** Catégorie manquante pour $nomp[$nbplantes] ***</b></font><br>"); 
+			{ 	$nom_plante =  $nouvelle_plante['nomp'];
+			    echo "<font color=red><b>*** Catégorie manquante pour $nom_plante ***</b></font><br>"; 
+			    $nouvelle_plante['catp'] = "";
              	$erreur = true;
 			}
-			else { $catp[$nbplantes] = $plante['catp']; }
-			if (isset($plante['pas_aos'])) 
-			{ $pas_aos[$nbplantes] = $plante['pas_aos']; }
-            else { $pas_aos[$nbplantes] = ""; }
-            $nbplantes++;
+			else 
+			{ $nouvelle_plante['catp'] = $plante['catp'];
+            }
+			$nouvelle_plante['pas_aos'] = isset($plante['pas_aos']);
+			$plantes[] = $nouvelle_plante;
 		}
 	}
 }
+else
+{
+	echo ("Paramètres non définis<br>");
+	$erreur = true;
+}
+
+$nbplantes = count($plantes);
 
 $_SESSION['nbplantes'] = $nbplantes;
-$_SESSION['nomp'] = $nomp;
-$_SESSION['catp'] = $catp;
-$_SESSION['pas_aos'] = $pas_aos;
+$_SESSION['plantes'] = $plantes;
 
-if ($nbplantes == 0)
+
+if (count($plantes) == 0)
 { echo "<font color=red><b>*** Vous n'avez entré aucune plante ***</b></font><br>";
-  $erreur = True;
+  $erreur = true;
 }
 else
 {  $str_plantes = "plante";
-   if ($nbplantes > 1) { $str_plantes = $str_plantes . "s"; }
+   if (count($plantes) > 1) { $str_plantes .= "s"; }
    echo "Nombre de $str_plantes: $nbplantes <br>"; 
 }
-
-
 
 
 # Afficher les plantes entrées 
@@ -135,18 +144,24 @@ echo "<td width=100 align=center>Catégorie</td>";
 echo "<td width=500 align=left>Nom</td>";
 echo "<td width=50 align=center>Pas AOS</td>";
 echo "</b></tr>";
-for ($i = 0; $i < $nbplantes; $i++)
+foreach ($plantes as $index=>$plante)
  {
      echo "<tr>";
-	 $noplante = $i + 1;
+	 $noplante = $index + 1;
      echo "<td align=center>$noplante</td>";
      echo "<td align=center>"; 
-	 $lennom = strlen($nomp[$i]);
-	 if (empty ($catp[$i]))
-		 { $erreur = true; echo("Erreur");}
-  	 else echo("$catp[$i]"); 
-     echo "<td align=left>$nomp[$i]<td>";
-     echo "<td align=center>$pas_aos[$i]<td>";
+	 $lennom = strlen($plante['nomp']);
+	 if (empty ($plante['catp']))
+		 { $erreur = true; 
+		   echo("Erreur");
+		 }
+  	 else echo($plante['catp']); 
+     echo "<td align=left>{$plante['nomp']}<td>";
+	 if ($plante['pas_aos'])
+	 { $str_pas_aos = "X"; }
+	 else 
+	 { $str_pas_aos = ""; }
+     echo "<td align=center>$str_pas_aos<td>";
 	 echo "</td></tr>";
 }
 echo "</table>\n";

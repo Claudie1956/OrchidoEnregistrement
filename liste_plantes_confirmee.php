@@ -26,8 +26,13 @@ function envoyer_liste()
     else
     { $message = $message . "Membre# " . $_SESSION['membre'] . "\n\n"; }
 	
-	for ($i = 0; $i <= $_SESSION['nbplantes']-1 ; $i++) 
-	{ $message = $message . $_SESSION['catp'][$i] . "  " . $_SESSION['nomp'][$i] . $_SESSION['pas_aos'][$i] ."\n"; }
+	foreach ($_SESSION['plantes'] as $plante)
+	{ if ($plante['pas_aos'])
+ 	  { $str_pas_aos = "X"; }
+	  else 
+	  { $str_pas_aos = ""; }
+	  $message = $message . $plante['catp'] . "  " . $plante['nomp'] . " " . $str_pas_aos ."\n"; 
+	}
     echo "<center><b>$objet</b></center>";
 	# Structure courriel
 	$message_envoye = "Votre message a été envoyé !";
