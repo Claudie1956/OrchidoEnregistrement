@@ -27,13 +27,10 @@ function envoyer_liste()
     { $message = $message . "Membre# " . $_SESSION['membre'] . "\n\n"; }
 	
 	foreach ($_SESSION['plantes'] as $plante)
-	{ if ($plante['pas_aos'])
- 	  { $str_pas_aos = "X"; }
-	  else 
-	  { $str_pas_aos = ""; }
+	{ $str_pas_aos = $plante['pas_aos'] ? "X" : "";
 	  $message = $message . $plante['catp'] . "  " . $plante['nomp'] . " " . $str_pas_aos ."\n"; 
 	}
-    echo "<center><b>$objet</b></center>";
+    echo "<center><font size='+2'><b>$objet</b></font></center>";
 	# Structure courriel
 	$message_envoye = "Votre message a été envoyé !";
     $message_non_envoye = "L'envoi du mail a échoué, veuillez réessayer SVP.";

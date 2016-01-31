@@ -84,7 +84,7 @@ function afficher_liste_categories($ligne_liste)
 			echo "<td width=500>Nom</td>";
 			echo "<td width=50 align=center>Pas AOS</td>";
 			echo "</tr>";
-			$maxp = 10;
+			$maxp = 15;
 			$tabnum = 4;
 			for ($i = 1; $i <= $maxp; $i++) 
             { echo "<tr>";

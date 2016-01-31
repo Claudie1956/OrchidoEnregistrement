@@ -87,7 +87,7 @@ else
 $nomp = array();
 $catp = array();
 $pas_aos = array();
-$maxp = 10;
+
 
 $plantes = array();
 
@@ -138,12 +138,12 @@ else
 # Afficher les plantes entrées 
 
 echo "<table cols=4 width=700>";
-echo "<tr><b>";
-echo "<td width=10 align=center>No</td>";
-echo "<td width=100 align=center>Catégorie</td>";
-echo "<td width=500 align=left>Nom</td>";
-echo "<td width=50 align=center>Pas AOS</td>";
-echo "</b></tr>";
+echo "<tr>";
+echo "<td width=10 align=center><b>No</b></td>";
+echo "<td width=100 align=center><b>Catégorie</b></td>";
+echo "<td width=500 align=left><b>Nom</b></td>";
+echo "<td width=50 align=center><b>Pas AOS</b></td>";
+echo "</tr>";
 foreach ($plantes as $index=>$plante)
  {
      echo "<tr>";
@@ -156,13 +156,11 @@ foreach ($plantes as $index=>$plante)
 		   echo("Erreur");
 		 }
   	 else echo($plante['catp']); 
-     echo "<td align=left>{$plante['nomp']}<td>";
-	 if ($plante['pas_aos'])
-	 { $str_pas_aos = "X"; }
-	 else 
-	 { $str_pas_aos = ""; }
-     echo "<td align=center>$str_pas_aos<td>";
-	 echo "</td></tr>";
+	 echo "</td>";
+     echo "<td align=left>{$plante['nomp']}</td>";
+	 $str_pas_aos = $plante['pas_aos'] ? "X" : "";
+     echo "<td align=center>$str_pas_aos</td>";
+	 echo "</tr>";
 }
 echo "</table>\n";
 ?>
