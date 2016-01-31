@@ -32,12 +32,12 @@ $fichier=file('./categories_plantes.txt');
 $i=0;
 $nb=count($fichier);
 $first = true;
-$il = -1;
-#$ligne_liste[$il] = "<select name='categorie'>";
+$il = 0;
+$ligne_liste[$il] = "<option value='message_categorie'>Choisissez une catégorie...</option>";
 while($i<$nb)
 { $type = substr($fichier[$i],0,1);
   #echo $fichier[$i];
-  #echo "Type $ype";
+  #echo "Type $type";
   if ($type != "C")
    { $r=explode(';',$fichier[$i],2);
      #echo "$r[0] $r[1]<br>";

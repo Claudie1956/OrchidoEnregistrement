@@ -1,3 +1,7 @@
+<?php
+error_reporting(-1);
+ini_set('display_errors','On');
+?>
 <?php session_start(); ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -24,9 +28,7 @@ function envoyer_liste()
 	
 	for ($i = 0; $i <= $_SESSION['nbplantes']-1 ; $i++) 
 	{ $message = $message . $_SESSION['catp'][$i] . "  " . $_SESSION['nomp'][$i] . $_SESSION['pas_aos'][$i] ."\n"; }
-	echo "<p></p>";
-	print "Contenu du message envoyé\r\n";
-	print "$message";
+    echo "<center><b>$objet</b></center>";
 	# Structure courriel
 	$message_envoye = "Votre message a été envoyé !";
     $message_non_envoye = "L'envoi du mail a échoué, veuillez réessayer SVP.";
@@ -37,6 +39,12 @@ function envoyer_liste()
 				'Content-Disposition: inline'. "\r\n" .
 				'Content-Transfer-Encoding: 7bit'." \r\n" .
 				'X-Mailer:PHP/'.phpversion();
+#	echo "Destinataire $destinataire<br>";
+#	echo "Objet $objet<br>";
+#	echo "Message <br>";
+#	echo "$message<br>";
+#	echo "Header <br>";
+#	echo "$headers<br>";
     if (mail($destinataire, $objet, $message, $headers))
 	{
 	  echo '<p><center>'.$message_envoye.'</center></p>'."\n";

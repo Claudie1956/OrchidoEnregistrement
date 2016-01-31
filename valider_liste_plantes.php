@@ -40,7 +40,7 @@ if (!isset($_POST['email']) || filter_var($_POST['email'], FILTER_VALIDATE_EMAIL
 else 
 { $email = htmlspecialchars($_POST['email']);
   echo "<b>$email</b><br>"; 
-  $_SESSION['email'] = $nom;
+  $_SESSION['email'] = $email;
 }
 
 # Valider: #membre ou Société, mais pas les deux. Mais un des deux
@@ -84,9 +84,9 @@ else
 
 <?php
 # remplir tableaux avec les noms et les catégories de plantes
-$nomp = array("");
-$catp = array("");
-$pas_aos = array("");
+$nomp = array();
+$catp = array();
+$pas_aos = array();
 $maxp = 10;
 
 if (isset($_POST['plantes'])) 
@@ -95,7 +95,11 @@ if (isset($_POST['plantes']))
 	foreach ($_POST['plantes'] as $plante) 
 	{	if (strlen($plante['nomp']) > 0) 
 		{   $nomp[$nbplantes] = $plante['nomp'];
-			$catp[$nbplantes] = $plante['catp'];
+			if (empty($plante['catp']) or ($plante['catp'] == "message_categorie"))
+			{ 	echo ("<font color=red><b>*** Catégorie manquante pour $nomp[$nbplantes] ***</b></font><br>"); 
+             	$erreur = true;
+			}
+			else { $catp[$nbplantes] = $plante['catp']; }
 			if (isset($plante['pas_aos'])) 
 			{ $pas_aos[$nbplantes] = $plante['pas_aos']; }
             else { $pas_aos[$nbplantes] = ""; }
@@ -131,16 +135,15 @@ echo "<td width=100 align=center>Catégorie</td>";
 echo "<td width=500 align=left>Nom</td>";
 echo "<td width=50 align=center>Pas AOS</td>";
 echo "</b></tr>";
-for ($i = 0; $i <= $nbplantes-1; $i++)
+for ($i = 0; $i < $nbplantes; $i++)
  {
      echo "<tr>";
 	 $noplante = $i + 1;
      echo "<td align=center>$noplante</td>";
      echo "<td align=center>"; 
 	 $lennom = strlen($nomp[$i]);
-	 $lencat = strlen($catp[$i]);
-     if (($lennom > 0) and ($lencat = 0) )
-		 { $erreur = True; echo("Erreur");}
+	 if (empty ($catp[$i]))
+		 { $erreur = true; echo("Erreur");}
   	 else echo("$catp[$i]"); 
      echo "<td align=left>$nomp[$i]<td>";
      echo "<td align=center>$pas_aos[$i]<td>";
