@@ -8,6 +8,7 @@
 </head>		
 
 <body>	
+
 		
 <h2>Validation de la liste des plantes</h2>
 
@@ -137,15 +138,17 @@ else
 
 # Afficher les plantes entrées 
 
-echo "<table cols=4 width=700>";
-echo "<tr>";
-echo "<td width=10 align=center><b>No</b></td>";
-echo "<td width=100 align=center><b>Catégorie</b></td>";
-echo "<td width=500 align=left><b>Nom</b></td>";
-echo "<td width=50 align=center><b>Pas AOS</b></td>";
-echo "</tr>";
-foreach ($plantes as $index=>$plante)
- {
+if ($nbplantes > 0)
+{
+  echo "<table cols=4 width=700>";
+  echo "<tr>";
+  echo "<td width=10 align=center><b>No</b></td>";
+  echo "<td width=100 align=center><b>Catégorie</b></td>";
+  echo "<td width=500 align=left><b>Nom</b></td>";
+  echo "<td width=50 align=center><b>Pas AOS</b></td>";
+  echo "</tr>";
+  foreach ($plantes as $index=>$plante)
+  {
      echo "<tr>";
 	 $noplante = $index + 1;
      echo "<td align=center>$noplante</td>";
@@ -161,8 +164,9 @@ foreach ($plantes as $index=>$plante)
 	 $str_pas_aos = $plante['pas_aos'] ? "X" : "";
      echo "<td align=center>$str_pas_aos</td>";
 	 echo "</tr>";
+  }
+  echo "</table>\n";
 }
-echo "</table>\n";
 ?>
 
 

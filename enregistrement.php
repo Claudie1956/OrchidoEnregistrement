@@ -6,7 +6,37 @@
 </head>		
 <body>
 
-<h2>Enregistrement des plantes</h2>
+<!-- Définition style pour bouton liste des classes -->
+<style type="text/css">
+a.stylebouton {
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  border: solid thin #929292;
+  text-shadow: none;
+  background: #F6F6F6;
+  background-image: -webkit-linear-gradient(top, #F6F6F6, #DDDDDD);
+  background-image: -moz-linear-gradient(top, #F6F6F6, #DDDDDD);
+  background-image: -ms-linear-gradient(top, #F6F6F6, #DDDDDD);
+  background-image: -o-linear-gradient(top, #F6F6F6, #DDDDDD);
+  background-image: linear-gradient(to bottom, #F6F6F6, #DDDDDD);    
+  color: buttontext;
+  padding: 3px 8px;
+  margin: 2px;
+  text-decoration: none;
+  font-family: Arial;
+  font-size: 13.1999998092651px;
+}
+a.stylebouton:hover {
+ background-image: -webkit-linear-gradient(top, #DDDDDD, #F6F6F6);
+  background-image: -moz-linear-gradient(top, #DDDDDD, #F6F6F6);
+  background-image: -ms-linear-gradient(top, #DDDDDD, #F6F6F6);
+  background-image: -o-linear-gradient(top, #DDDDDD, #F6F6F6, #DDDDDD);
+  background-image: linear-gradient(to bottom, #DDDDDD, #F6F6F6);    
+}
+</style>
+
+<h1>Enregistrement des plantes</h1>
     <form id="enregistrement" method="post" action="valider_liste_plantes.php">
     	<fieldset><legend><b>Vos coordonnées</b></legend>
             <table cols="2" width="700">
@@ -80,9 +110,9 @@ function afficher_liste_categories($ligne_liste)
 			# En-tête du tableau
 			echo "<tr>";
 			echo "<td width=10></td>";
-			echo "<td width=80 align=center>Catégorie</td>";
-			echo "<td width=500>Nom</td>";
-			echo "<td width=50 align=center>Pas AOS</td>";
+			echo "<td width=80 align=center><b>Catégorie</b></td>";
+			echo "<td width=500><b>Nom</b></td>";
+			echo "<td width=50 align=center><b>Pas AOS</b></td>";
 			echo "</tr>";
 			$maxp = 15;
 			$tabnum = 4;
@@ -107,10 +137,14 @@ function afficher_liste_categories($ligne_liste)
     	</fieldset>
         <p></p>
         <?php 
-    	 echo "<div align=center><input type=submit name=Valider value=Valider tabindex=$tabnum /></div>";
-         echo "<div align=center>ou</div>";
+		 echo "<table cols=3>";
+		 echo "<tr>";
+		 echo "<td width=400><center><a class='stylebouton' href='./liste_classes.pdf' target='_blank'>Consulter la liste des classes</a></center></td>";
+    	 echo "<td width=300><center><input type=submit name=Valider value=Valider tabindex=$tabnum /></center></td>";
 		 $tabnum++;
-         echo "<div align=center><input type=reset value='Réinitialiser le formulaire' tabindex=$tabnum /> </div>";
+         echo "<td width=400><center><input type=reset value='Réinitialiser le formulaire' tabindex=$tabnum /></center></td>";
+		 echo "</tr>";
+		 echo "</table>";
 		?>
     </form>
 
