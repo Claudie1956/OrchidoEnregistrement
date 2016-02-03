@@ -121,7 +121,7 @@ function afficher_liste_categories($ligne_liste)
               echo "<td align=center>$i</td>";
 			  echo "<td>";
 			  $tabnum++;
-			  echo  "<select name='plantes[$i][catp]' tabindex=$tabnum>";
+			  echo  "<select name='plantes[$i][catp]' style='width:300px' tabindex=$tabnum>";
 			  afficher_liste_categories($ligne_liste);
               echo "</td>";
     		  #echo "<td align=center><input type=text name='plantes[$i][catp]' size=4 tabindex=$tabnum /></td>";
