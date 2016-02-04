@@ -13,6 +13,28 @@ ini_set('display_errors','On');
 
 <body>
 
+<style type="text/css">
+a.stylebouton {
+  border-radius: 3px;
+  border: solid thin #1C1C1C;
+  text-shadow: none;
+  background: #01DF01;
+  color: buttontext;
+  padding: 3px 8px;
+  margin: 2px;
+  text-decoration: none;
+  font-family: Arial;
+  font-size: 13px;
+}
+a.stylebouton:hover {
+ background-image: -webkit-linear-gradient(top, #DDDDDD, #F6F6F6);
+  background-image: -moz-linear-gradient(top, #DDDDDD, #F6F6F6);
+  background-image: -ms-linear-gradient(top, #DDDDDD, #F6F6F6);
+  background-image: -o-linear-gradient(top, #DDDDDD, #F6F6F6, #DDDDDD);
+  background-image: linear-gradient(to bottom, #DDDDDD, #F6F6F6);    
+}
+</style>
+
 <?php
 # Fonction pour envoyer courriel, utilisée à la fin
 function envoyer_liste()
@@ -68,7 +90,8 @@ if (isset($_POST['envoyer']))
 
 <!-- Retour à la page d'enregistrement -->
 
-<center><a href="./enregistrement.php">Retour à la page d'enregistrement</a></center>
+
+<center><a class='stylebouton' href='./enregistrement.php'>Retour à la page d'enregistrement</a></center>";
 
 
 </body>

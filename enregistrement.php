@@ -7,25 +7,28 @@
 <body>
 
 <!-- Définition style pour bouton liste des classes -->
-<style type="text/css">
-a.stylebouton {
-  -webkit-border-radius: 1px;
-  -moz-border-radius: 1px;
-  border-radius: 1px;
-  border: solid thin #929292;
-  text-shadow: none;
-  background: #F6F6F6;
+<!-- 
   background-image: -webkit-linear-gradient(top, #F6F6F6, #DDDDDD);
   background-image: -moz-linear-gradient(top, #F6F6F6, #DDDDDD);
   background-image: -ms-linear-gradient(top, #F6F6F6, #DDDDDD);
   background-image: -o-linear-gradient(top, #F6F6F6, #DDDDDD);
   background-image: linear-gradient(to bottom, #F6F6F6, #DDDDDD);    
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  background: #F6F6F6;
+-->
+<style type="text/css">
+a.stylebouton {
+  border-radius: 3px;
+  border: solid thin #1C1C1C;
+  text-shadow: none;
+  background: #A9D0F5;
   color: buttontext;
   padding: 3px 8px;
   margin: 2px;
   text-decoration: none;
   font-family: Arial;
-  font-size: 13.1999998092651px;
+  font-size: 13px;
 }
 a.stylebouton:hover {
  background-image: -webkit-linear-gradient(top, #DDDDDD, #F6F6F6);
@@ -37,6 +40,7 @@ a.stylebouton:hover {
 </style>
 
 <h1>Enregistrement des plantes</h1>
+<h2>1. Saisie du nom des plantes</h2>
     <form id="enregistrement" method="post" action="valider_liste_plantes.php">
     	<fieldset><legend><b>Vos coordonnées</b></legend>
             <table cols="2" width="700">
@@ -56,14 +60,14 @@ a.stylebouton:hover {
     	</fieldset>
 
 <?php
-# Lire fichier des catégories de plantes
+# Lire fichier des classes de plantes
 $ligne_liste = array("");
 $fichier=file('./categories_plantes.txt');
 $i=0;
 $nb=count($fichier);
 $first = true;
 $il = 0;
-$ligne_liste[$il] = "<option value='message_categorie'>Choisissez une catégorie...</option>";
+$ligne_liste[$il] = "<option value='message_categorie'>Choisissez une classe...</option>";
 while($i<$nb)
 { $type = substr($fichier[$i],0,1);
   #echo $fichier[$i];
@@ -110,7 +114,7 @@ function afficher_liste_categories($ligne_liste)
 			# En-tête du tableau
 			echo "<tr>";
 			echo "<td width=10></td>";
-			echo "<td width=80 align=center><b>Catégorie</b></td>";
+			echo "<td width=80 align=center><b>Classe</b></td>";
 			echo "<td width=500><b>Nom</b></td>";
 			echo "<td width=50 align=center><b>Pas AOS</b></td>";
 			echo "</tr>";
@@ -126,7 +130,7 @@ function afficher_liste_categories($ligne_liste)
               echo "</td>";
     		  #echo "<td align=center><input type=text name='plantes[$i][catp]' size=4 tabindex=$tabnum /></td>";
 			  $tabnum++;
-    		  echo "<td align=left><input type=text name='plantes[$i][nomp]' size=70 tabindex=$tabnum /></td>";
+    		  echo "<td align=left><input type=text name='plantes[$i][nomp]' size=70 width=600 tabindex=$tabnum /></td>";
 			  $tabnum++;
     		  echo "<td align=center><input type=checkbox name='plantes[$i][pas_aos]' value='X' tabindex=$tabnum /></td>";
               echo "</tr>";
@@ -139,10 +143,10 @@ function afficher_liste_categories($ligne_liste)
         <?php 
 		 echo "<table cols=3>";
 		 echo "<tr>";
-		 echo "<td width=400><center><a class='stylebouton' href='./liste_classes.pdf' target='_blank'>Consulter la liste des classes</a></center></td>";
-    	 echo "<td width=300><center><input type=submit name=Valider value=Valider tabindex=$tabnum /></center></td>";
+		 echo "<td width=300><center><a class='stylebouton' href='./liste_classes.pdf' target='_blank'>Consulter la liste des classes</a></center></td>";
+    	 echo "<td width=300><center><input type=submit name=Valider value=Valider style='background-color:#01DF01;color:black;border-radius:3px;border:solid thin #1C1C1C;' tabindex=$tabnum /></center></td>";
 		 $tabnum++;
-         echo "<td width=400><center><input type=reset value='Réinitialiser le formulaire' tabindex=$tabnum /></center></td>";
+         echo "<td width=300><center><input type=reset value='Réinitialiser le formulaire' style='background-color:#F7D358;color:black;border-radius:3px;border:solid thin #1C1C1C;' tabindex=$tabnum /></center></td>";
 		 echo "</tr>";
 		 echo "</table>";
 		?>
