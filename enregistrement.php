@@ -42,7 +42,7 @@ a.stylebouton:hover {
 <h1>Enregistrement des plantes</h1>
 <h2>1. Saisie du nom des plantes</h2>
     <form id="enregistrement" method="post" action="valider_liste_plantes.php">
-    	<fieldset><legend><b>Vos coordonnées</b></legend>
+    	<fieldset style='border:solid 2px #777777;'><legend><b>Vos coordonnées</b></legend>
             <table cols="2" width="700">
             <tr>
             <td width="150" align=left>Nom:</td>
@@ -93,8 +93,10 @@ $i++;
 }
 $il++; $ligne_liste[$il]="</optgroup>";
 $il++; $ligne_liste[$il]="</select>";
+?>
 
-# afficher la liste à partir du tableau ligne-liste
+<?php
+# fonction pour afficher la liste à partir du tableau ligne-liste
 function afficher_liste_categories($ligne_liste)
 { $nbl=count($ligne_liste);
   $il = 0;
@@ -103,54 +105,60 @@ function afficher_liste_categories($ligne_liste)
     $il++;
   }
 }
-
-#afficher_liste_categories($ligne_liste);
-
 ?>
 
-    	<fieldset><legend><b>Vos plantes</b></legend>
-            <?php
-            echo "<table cols=4 width=700>";
-			# En-tête du tableau
-			echo "<tr>";
-			echo "<td width=10></td>";
-			echo "<td width=80 align=center><b>Classe</b></td>";
-			echo "<td width=500><b>Nom</b></td>";
-			echo "<td width=50 align=center><b>Pas AOS</b></td>";
-			echo "</tr>";
-			$maxp = 15;
-			$tabnum = 4;
-			for ($i = 1; $i <= $maxp; $i++) 
-            { echo "<tr>";
-              echo "<td align=center>$i</td>";
-			  echo "<td>";
-			  $tabnum++;
-			  echo  "<select name='plantes[$i][catp]' style='width:300px' tabindex=$tabnum>";
-			  afficher_liste_categories($ligne_liste);
-              echo "</td>";
-    		  #echo "<td align=center><input type=text name='plantes[$i][catp]' size=4 tabindex=$tabnum /></td>";
-			  $tabnum++;
-    		  echo "<td align=left><input type=text name='plantes[$i][nomp]' size=70 width=600 tabindex=$tabnum /></td>";
-			  $tabnum++;
-    		  echo "<td align=center><input type=checkbox name='plantes[$i][pas_aos]' value='X' tabindex=$tabnum /></td>";
-              echo "</tr>";
-			}
-			$tabnum++;
-            echo "</table>";
-		?>
-    	</fieldset>
-        <p></p>
-        <?php 
-		 echo "<table cols=3>";
-		 echo "<tr>";
-		 echo "<td width=300><center><a class='stylebouton' href='./liste_classes.pdf' target='_blank'>Consulter la liste des classes</a></center></td>";
-    	 echo "<td width=300><center><input type=submit name=Valider value=Valider style='background-color:#01DF01;color:black;border-radius:3px;border:solid thin #1C1C1C;' tabindex=$tabnum /></center></td>";
-		 $tabnum++;
-         echo "<td width=300><center><input type=reset value='Réinitialiser le formulaire' style='background-color:#F7D358;color:black;border-radius:3px;border:solid thin #1C1C1C;' tabindex=$tabnum /></center></td>";
-		 echo "</tr>";
-		 echo "</table>";
-		?>
-    </form>
+<!-- Tableau du formulaire -->
+
+<fieldset  style='border:solid 2px #777777;'><legend><b>Vos plantes</b></legend>
+<?php
+ echo "<table cols=4 width=700>";
+ # En-tête du tableau
+ echo "<tr>";
+ echo "<td width=10></td>";
+ echo "<td width=80 align=center><b>Classe</b></td>";
+ echo "<td width=500><b>Nom</b></td>";
+ echo "<td width=50 align=center><b>Pas AOS</b></td>";
+ echo "</tr>";
+ # Lignes du tableau
+ $maxp = 15;
+ $tabnum = 4;
+ for ($i = 1; $i <= $maxp; $i++) 
+ { echo "<tr>";
+   echo "<td align=center>$i</td>";
+   # Liste déroulante des classes
+   echo "<td>";
+   $tabnum++;
+   echo  "<select name='plantes[$i][catp]' style='width:300px' tabindex=$tabnum>";
+   afficher_liste_categories($ligne_liste);
+   echo "</td>";
+   #echo "<td align=center><input type=text name='plantes[$i][catp]' size=4 tabindex=$tabnum /></td>";
+   # Nom de la plante
+   $tabnum++;
+   echo "<td align=left><input type=text name='plantes[$i][nomp]' size=70 width=600 tabindex=$tabnum /></td>";
+   # Case à cocher si pas jugement AOS
+   $tabnum++;
+   echo "<td align=center><input type=checkbox name='plantes[$i][pas_aos]' value='X' tabindex=$tabnum /></td>";
+   echo "</tr>";
+ }
+ $tabnum++;
+ echo "</table>";
+?>
+</fieldset>
+<p></p>
+        
+<!-- Les boutons en bas de la page -->
+<?php 
+ echo "<table cols=3>";
+ echo "<tr>";
+ echo "<td width=300><center><a class='stylebouton' href='./liste_classes.pdf' target='_blank'>Consulter la liste des classes</a></center></td>";
+ echo "<td width=300><center><input type=submit name=Valider value=Valider style='background-color:#01DF01;color:black;border-radius:3px;border:solid thin #1C1C1C;' tabindex=$tabnum /></center></td>";
+ $tabnum++;
+ echo "<td width=300><center><input type=reset value='Réinitialiser le formulaire' style='background-color:#F7D358;color:black;border-radius:3px;border:solid thin #1C1C1C;' tabindex=$tabnum /></center></td>";
+ echo "</tr>";
+ echo "</table>";
+?>
+
+</form>
 
 </body>
 </html>

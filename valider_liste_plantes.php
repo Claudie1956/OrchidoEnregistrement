@@ -139,8 +139,8 @@ else
 
 if ($nbplantes > 0)
 {
-  echo "<table cols=4 width=700>";
-  echo "<tr>";
+  echo "<table cols=4 width=700 cellpadding=4 cellspacing=0 border=1 style='border:solid 1px #777777;'>";
+  echo "<tr style='background-color:lightgrey;'>";
   echo "<td width=10 align=center><b>No</b></td>";
   echo "<td width=100 align=center><b>Classe</b></td>";
   echo "<td width=600 align=left><b>Nom</b></td>";
