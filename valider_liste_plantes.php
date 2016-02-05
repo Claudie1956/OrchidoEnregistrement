@@ -89,6 +89,7 @@ else
 $nomp = array();
 $catp = array();
 $pas_aos = array();
+$parfum = array();
 
 
 $plantes = array();
@@ -110,6 +111,7 @@ if (isset($_POST['plantes']))
 			{ $nouvelle_plante['catp'] = $plante['catp'];
             }
 			$nouvelle_plante['pas_aos'] = isset($plante['pas_aos']);
+			$nouvelle_plante['parfum'] = isset($plante['parfum']);
 			$plantes[] = $nouvelle_plante;
 		}
 	}
@@ -139,12 +141,13 @@ else
 
 if ($nbplantes > 0)
 {
-  echo "<table cols=4 width=700 cellpadding=4 cellspacing=0 border=1 style='border:solid 1px #777777;'>";
+  echo "<table cols=5 width=900 cellpadding=4 cellspacing=0 border=1 style='border:solid 1px #777777;'>";
   echo "<tr style='background-color:lightgrey;'>";
   echo "<td width=10 align=center><b>No</b></td>";
   echo "<td width=100 align=center><b>Classe</b></td>";
   echo "<td width=600 align=left><b>Nom</b></td>";
-  echo "<td width=100 align=center><b>Pas AOS</b></td>";
+  echo "<td width=80 align=center><b>Pas AOS</b></td>";
+  echo "<td width=80 align=center><b>Kiosque<br>Parfum</b></td>";
   echo "</tr>";
   foreach ($plantes as $index=>$plante)
   {
@@ -162,6 +165,8 @@ if ($nbplantes > 0)
      echo "<td align=left>{$plante['nomp']}</td>";
 	 $str_pas_aos = $plante['pas_aos'] ? "X" : "";
      echo "<td align=center>$str_pas_aos</td>";
+	 $str_parfum = $plante['parfum'] ? "X" : "";
+     echo "<td align=center>$str_parfum</td>";
 	 echo "</tr>";
   }
   echo "</table>\n";
@@ -169,26 +174,14 @@ if ($nbplantes > 0)
 ?>
 
 
-<?php
-# Si erreur, bouton pour retourner au formulaire
-#$tabnum=1;
-#if (! $erreur)
-#{ 
-#	echo "<p></p>";
-#   echo "<form id='bouton_valider' method='post' action='liste_plantes_confirmee.php'>";
-#	echo "<center><input type=submit name=envoyer value='Envoyer la liste' style='background-color:#01DF01;color:black;border-radius:3px;border:solid thin #1C1C1C;' tabindex=$tabnum /></center>";
-#   echo "</form>\n";
-#    echo "<center>ou</center>";
-#	$tabnum++;
-#}
-#echo "<center><button style='background-color:#F7D358;color:black;border-radius:3px;border:solid thin #1C1C1C;' onclick='history.go(-1);'>Revenir au formulaire</button></center>\n";
-?>
 <p></p>
 <?php 
+# Boutons pour envoyer la liste ou retourner au formulaire
+# Si erreur, bouton pour retourner au formulaire seulement
   $tabnum=1;
   echo "<table cols=2>";
   echo "<tr>";
-  echo "<td width=300>";
+  echo "<td width=400>";
   if (! $erreur)
   { 
     echo "<form id='bouton_valider' method='post' action='liste_plantes_confirmee.php'>";
@@ -197,7 +190,7 @@ if ($nbplantes > 0)
 	$tabnum++;
   }
   echo "</td>";
-  echo "<td width=300><center><button style='background-color:#F7D358;color:black;border-radius:3px;border:solid thin #1C1C1C;' onclick='history.go(-1);'  tabindex=$tabnum>Revenir au formulaire</button></center></td>";
+  echo "<td width=400><center><button style='background-color:#F7D358;color:black;border-radius:3px;border:solid thin #1C1C1C;' onclick='history.go(-1);'  tabindex=$tabnum>Revenir au formulaire</button></center></td>";
   echo "</tr>";
   echo "</table>";
 ?>

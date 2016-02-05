@@ -58,6 +58,7 @@ a.stylebouton:hover {
             </tr>
             </table>
     	</fieldset>
+        <p></p>
 
 <?php
 # Lire fichier des classes de plantes
@@ -111,13 +112,14 @@ function afficher_liste_categories($ligne_liste)
 
 <fieldset  style='border:solid 2px #777777;'><legend><b>Vos plantes</b></legend>
 <?php
- echo "<table cols=4 width=700>";
+ echo "<table cols=5 width=800>";
  # En-tête du tableau
  echo "<tr>";
  echo "<td width=10></td>";
  echo "<td width=80 align=center><b>Classe</b></td>";
- echo "<td width=500><b>Nom</b></td>";
+ echo "<td width=500 align=center><b>Nom</b></td>";
  echo "<td width=50 align=center><b>Pas AOS</b></td>";
+ echo "<td width=100 align=center><b>Kiosque<br>Parfum</b></td>";
  echo "</tr>";
  # Lignes du tableau
  $maxp = 15;
@@ -138,14 +140,17 @@ function afficher_liste_categories($ligne_liste)
    # Case à cocher si pas jugement AOS
    $tabnum++;
    echo "<td align=center><input type=checkbox name='plantes[$i][pas_aos]' value='X' tabindex=$tabnum /></td>";
+   # Case à cocher si kiosque parfum
+   $tabnum++;
+   echo "<td align=center><input type=checkbox name='plantes[$i][parfum]' value='X' tabindex=$tabnum /></td>";
    echo "</tr>";
  }
  $tabnum++;
  echo "</table>";
 ?>
 </fieldset>
-<p></p>
-        
+<!-- Note pour le kiosque des parfums -->
+<p><center><b>Note:</b> le kiosque des plantes parfumées est seulement pour les membres de la Société des Orchidophiles de Montréal</center></p>
 <!-- Les boutons en bas de la page -->
 <?php 
  echo "<table cols=3>";

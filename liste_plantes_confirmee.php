@@ -50,7 +50,8 @@ function envoyer_liste()
 	
 	foreach ($_SESSION['plantes'] as $plante)
 	{ $str_pas_aos = $plante['pas_aos'] ? "X" : "";
-	  $message = $message . $plante['catp'] . "  " . $plante['nomp'] . " " . $str_pas_aos ."\n"; 
+	  $str_parfum = $plante['parfum'] ? "Parfum" : "";
+	  $message = $message . $plante['catp'] . "  " . $plante['nomp'] . " " . $str_pas_aos . " " . $str_parfum ."\n"; 
 	}
     echo "<center><font size='+2'><b>$objet</b></font></center>";
 	# Structure courriel
