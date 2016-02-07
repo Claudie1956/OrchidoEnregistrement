@@ -43,18 +43,19 @@ a.stylebouton:hover {
 <h2>1. Saisie du nom des plantes</h2>
     <form id="enregistrement" method="post" action="valider_liste_plantes.php">
     	<fieldset style='border:solid 2px #777777;'><legend><b>Vos coordonnées</b></legend>
-            <table cols="2" width="700">
+            <table cols="3" width="800">
             <tr>
-            <td width="150" align=left>Nom:</td>
-            <td width="500" ><input type="text" id="nom" name="nom" size="60" tabindex="1" /></td>
+            <td width="100" align=left>Nom:</td>
+            <td width="500" colspan="2" ><input type="text" id="nom" name="nom" size="90" tabindex="1" /></td>
             </tr>
             <tr>
             <td align="left">Courriel:</td>
-            <td><input type="text" id="email" name="email" size="60" tabindex="2"></td>
+            <td colspan="2"><input type="text" id="email" name="email" size="90" tabindex="2"></td>
             </tr>
             <tr>
-            <td align=left><label for="membre"># membre: </label><input type="text" id="membre" name="membre" size="4" tabindex="3" /></td>
-            <td ><label for="societe">ou Société: </label><input type="text" id="societe" name="societe" size="50" tabindex="4" /></td>
+            <td align=left># membre:</td>
+            <td align=left width="50"><input type="text" id="membre" name="membre" size="4" tabindex="3" /></td>
+            <td ><label for="societe">ou Société/Producteur: </label><input type="text" id="societe" name="societe" size="60" tabindex="4" /></td>
             </tr>
             </table>
     	</fieldset>

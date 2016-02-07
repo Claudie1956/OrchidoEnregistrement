@@ -44,7 +44,7 @@ function envoyer_liste()
 	$message = "Plantes de " . $_SESSION['nom'] . "\n";
 	$message = $message . $_SESSION['email'] . "\n";
     if (empty($_SESSION['membre']))
-    { $message = $message . $_SESSION['societe'] . "\n"; }
+    { $message = $message . $_SESSION['societe'] . "\n\n"; }
     else
     { $message = $message . "Membre# " . $_SESSION['membre'] . "\n\n"; }
 	
